@@ -112,6 +112,16 @@ new Vue({
 ```
 ## 代码优化
 * 在页面中加入切换语言的控件
+```
+<el-select v-model="languageName" placeholder="请选择语言" @change="changeLanguage">
+  <el-option
+    v-for="item in languageOptions"
+    :key="item.value"
+    :label="item.label"
+    :value="item.value"
+  ></el-option>
+</el-select>
+```
 * 加入一个选择语言的下拉框，修改locale的值为选择的语言。
 ```
 changeLanguage (language) {
