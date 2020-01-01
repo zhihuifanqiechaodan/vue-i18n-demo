@@ -5,7 +5,7 @@
 * element国际化配置
 
 ## 安装依赖
-```
+```js
 npm i -S element-ui vue-i18n js-cookie
 ```
 安装js-cookie是为了将当前选择的语言保存并在下一次打开时默认选择。
@@ -15,7 +15,7 @@ npm i -S element-ui vue-i18n js-cookie
 详细请看目录文件
 
 * 准备本地的翻译信息，在src下新建lang文件夹，新建文件zh.js，en.js。 
-```
+```js
 zh.js
 const ZH = {
     header: {
@@ -41,7 +41,7 @@ const EN = {
 export default EN
 ```
 * 创建VueI18n实例，使用创建的翻译信息，在lang文件下新建index.js文件
-```
+```js
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
 import enLocale from './en'
@@ -65,7 +65,7 @@ const i18n = new VueI18n({
 export default i18n
 ```
 * 在 main.js 中引入 vue-i18n，并挂在在vue实例中。
-```
+```js
 import Vue from 'vue'
 import App from './App'
 import router from './router'
@@ -87,7 +87,7 @@ new Vue({
 })
 ```
 * 开始使用，在App.vue页面中通过$t()方法使用。
-```
+```js
 <template>
   <div id="app">
     <img src="./assets/logo.png" />
@@ -112,7 +112,7 @@ new Vue({
 ```
 ## 代码优化
 * 在页面中加入切换语言的控件
-```
+```js
 <el-select v-model="languageName" placeholder="请选择语言" @change="changeLanguage">
   <el-option
     v-for="item in languageOptions"
@@ -123,13 +123,13 @@ new Vue({
 </el-select>
 ```
 * 加入一个选择语言的下拉框，修改locale的值为选择的语言。
-```
+```js
 changeLanguage (language) {
   this.$i18n.locale = language
 }
 ```
 * 刷新页面之后初始化，将还原为默认值。
-```
+```js
 将language信息保存在cookie（之前已经安装了js-cookie）。初始化从cookie中获取。
 
 const i18n = new VueI18n({
@@ -142,7 +142,7 @@ const i18n = new VueI18n({
 Cookies.set('language', language)
 ```
 * 切换语言的控件没有变。
-```
+```js
 languageOptions () {
   let languageOptions
   if (this.$store.state.language === 'zh') {
